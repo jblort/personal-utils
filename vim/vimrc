@@ -1,0 +1,164 @@
+execute pathogen#infect()
+execute pathogen#helptags()
+
+set shell=/bin/bash
+
+"Tell vim where fzf is.
+set rtp+=/usr/local/opt/fzf
+
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+" Tabs Configuration
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+
+" Filetypes and encoding
+set fileformats=unix,dos,mac
+set encoding=utf-8
+set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+
+"Make backspace a more flexible
+set backspace=indent,eol,start
+
+"General behavior
+set autochdir      " CWD is always same as current file
+set ai             " Autoident
+set nowrap         " Do not wrap lines
+set nocompatible   " ViM settings instead of Vi
+set smartcase      " Smart casing when searching
+set ignorecase     " ... or ignore casing
+set hlsearch       " Highlight matches
+set incsearch      " Modern (wrapping) search
+set history=500    " Long undo history
+set tw=1000
+
+
+"Misc editor properties
+set showcmd         "Show last command in bottom right corner
+set cursorline      "Highlight line on which cursor is standing
+let c_space_errors = 1
+let c_no_trail_space_error = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" User interface setings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+syntax on
+colorscheme desert
+
+set showmatch                        " Show matching braces when over one
+set ruler                            " Always show current position
+set number                           " Always show line-numbers
+set numberwidth=5                    " Line-number margin width
+set mousehide                        " Do not show mouse while typing
+set antialias                        " Pretty fonts
+set t_Co=256                         " 256-color palletes
+set background=dark                  " Dark background variation of theme
+set guifont=Andale\ Mono\ 7.5          " Monospaced small font
+set guioptions-=T                    " TODO
+set guioptions+=c                    " TODO Console messages
+set linespace=0                      " Don't insert any extra pixel lines
+set lazyredraw                       " Don't redraw while running macros
+set wildmenu                         " Wild menu
+set wildmode=longest,list,full       " Wild menu options
+set lines=200                         " Set default height to 50 lines
+set columns=200                      " Set default width to 140 chars 
+
+
+" Statusline
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    + current
+"              | | | | |  |   |      |  |     |       column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax in
+"              | | | | |  |   |          square brackets
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
+
+"Plugin
+filetype plugin on  "Enable plugins
+filetype indent on  
+
+set wildmenu
+set lazyredraw
+
+"Higlighting
+set showmatch
+
+"Search options
+set incsearch
+set hlsearch
+
+let c_space_errors = 1
+
+" == Custom bindings == 
+let mapleader= "\<space>"
+"Remap leader + space to stop highligthing of the last search
+nnoremap <leader>h :nohlsearch<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+"Bind j and k to move up/down one "logical" line.
+nnoremap j gj 
+nnoremap k gk
+
+"Move to the beginning or end of line
+nnoremap B ^
+nnoremap E $
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Split configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"navigation between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"Better split opening location defaults
+set splitbelow
+set splitright
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tools
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
+"Airline fix
+set laststatus=2
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+" Vim asks only once per ycm configuration file
+let g:ycm_confirm_extra_conf = 0 
+" Force close the preview window
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
