@@ -1,17 +1,16 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-set shell=/bin/bash
+set shell=/bin/zsh
+set directory=~/.vim/swaps//
 
-"Tell vim where fzf is.
 set rtp+=/usr/local/opt/fzf
 
-
 syntax enable
+let g:solarized_termtrans = 1
 set background=dark
 colorscheme solarized
-
-" Tabs Configuration
+" tabs Configuration
 filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -19,6 +18,7 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set clipboard=unnamed
 
 
 " Filetypes and encoding
@@ -30,12 +30,12 @@ set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*
 set backspace=indent,eol,start
 
 "General behavior
+set autoread       " Updates files automatically when modified from the outside
 set autochdir      " CWD is always same as current file
 set ai             " Autoident
 set nowrap         " Do not wrap lines
 set nocompatible   " ViM settings instead of Vi
 set smartcase      " Smart casing when searching
-set ignorecase     " ... or ignore casing
 set hlsearch       " Highlight matches
 set incsearch      " Modern (wrapping) search
 set history=500    " Long undo history
@@ -51,18 +51,12 @@ let c_no_trail_space_error = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface setings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-syntax on
-colorscheme desert
-
 set showmatch                        " Show matching braces when over one
 set ruler                            " Always show current position
 set number                           " Always show line-numbers
 set numberwidth=5                    " Line-number margin width
 set mousehide                        " Do not show mouse while typing
 set antialias                        " Pretty fonts
-set t_Co=256                         " 256-color palletes
-set background=dark                  " Dark background variation of theme
 set guifont=Andale\ Mono\ 7.5          " Monospaced small font
 set guioptions-=T                    " TODO
 set guioptions+=c                    " TODO Console messages
@@ -70,8 +64,7 @@ set linespace=0                      " Don't insert any extra pixel lines
 set lazyredraw                       " Don't redraw while running macros
 set wildmenu                         " Wild menu
 set wildmode=longest,list,full       " Wild menu options
-set lines=200                         " Set default height to 50 lines
-set columns=200                      " Set default width to 140 chars 
+
 
 
 " Statusline
@@ -91,13 +84,6 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
 
-"Plugin
-filetype plugin on  "Enable plugins
-filetype indent on  
-
-set wildmenu
-set lazyredraw
-
 "Higlighting
 set showmatch
 
@@ -107,15 +93,16 @@ set hlsearch
 
 let c_space_errors = 1
 
-" == Custom bindings == 
-let mapleader= "\<space>"
+" == Custom bindings ==
+"let mapleader= "\<space>"
+map <space> <leader>
 "Remap leader + space to stop highligthing of the last search
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 
 "Bind j and k to move up/down one "logical" line.
-nnoremap j gj 
+nnoremap j gj
 nnoremap k gk
 
 "Move to the beginning or end of line
@@ -153,12 +140,16 @@ com! DiffSaved call s:DiffWithSaved()
 "Airline fix
 set laststatus=2
 
-syntax enable
-set background=dark
-colorscheme solarized
+set shortmess=a
+
+" Enables buffer hiding
+set hidden
+
+" Rust racer path
+let g:racer_cmd = "/Users/jblort/.cargo/bin/racer"
 
 " Vim asks only once per ycm configuration file
-let g:ycm_confirm_extra_conf = 0 
+let g:ycm_confirm_extra_conf = 0
 " Force close the preview window
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
