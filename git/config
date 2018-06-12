@@ -1,0 +1,26 @@
+# A simple config file to put in .ssh
+# that helps managing multiple git service accounts
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+
+# Personal GitHub account:
+Host home-github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/<personal_key>
+  IdentitiesOnly yes
+
+# Work GitHub account:
+Host work-github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/<work_key>
+  IdentitiesOnly yes
+
+#Personal Gitlab account:
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/<gitlab_key>
+  IdentitiesOnly yes
