@@ -16,10 +16,12 @@ filetype plugin indent on
 set tabstop=4
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
+set cino+=g0
 " On pressing tab, insert 4 spaces
 set expandtab
 set clipboard=unnamed
 
+autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " Filetypes and encoding
 set fileformats=unix,dos,mac
@@ -47,10 +49,13 @@ set showcmd         "Show last command in bottom right corner
 set cursorline      "Highlight line on which cursor is standing
 let c_space_errors = 1
 let c_no_trail_space_error = 1
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface setings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=a
 set showmatch                        " Show matching braces when over one
 set ruler                            " Always show current position
 set number                           " Always show line-numbers
@@ -91,15 +96,13 @@ set showmatch
 set incsearch
 set hlsearch
 
-let c_space_errors = 1
-
 " == Custom bindings ==
-"let mapleader= "\<space>"
-map <space> <leader>
+let mapleader= "\<space>"
+map <space> <Leader>
 "Remap leader + space to stop highligthing of the last search
-nnoremap <leader>h :nohlsearch<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 
 "Bind j and k to move up/down one "logical" line.
 nnoremap j gj
@@ -107,10 +110,14 @@ nnoremap k gk
 
 "Move to the beginning or end of line
 nnoremap B ^
+vnoremap B ^
 nnoremap E $
+vnoremap E $
 " $/^ doesn't do anything
 nnoremap $ <nop>
+vnoremap $ <nop>
 nnoremap ^ <nop>
+vnoremap ^ <nop>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Split configuration
