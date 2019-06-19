@@ -22,6 +22,7 @@ set expandtab
 set clipboard=unnamed
 
 autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufRead,BufNewFile *.gltf set filetype=json
 
 " Filetypes and encoding
 set fileformats=unix,dos,mac
@@ -62,6 +63,7 @@ set number                           " Always show line-numbers
 set numberwidth=5                    " Line-number margin width
 set mousehide                        " Do not show mouse while typing
 set antialias                        " Pretty fonts
+set guicursor=a:blinkon1
 set guifont=Andale\ Mono\ 7.5          " Monospaced small font
 set guioptions-=T                    " TODO
 set guioptions+=c                    " TODO Console messages
@@ -103,6 +105,17 @@ map <space> <Leader>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+
+"Remap arrows to be inoperant. Get used to hjkl
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+
 
 "Bind j and k to move up/down one "logical" line.
 nnoremap j gj
