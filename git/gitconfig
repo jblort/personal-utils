@@ -18,3 +18,11 @@
 	stdp = stash drop
 	stshp = stash show -p
 	stsh = stash show
+	dog = log --all --decorate --oneline --graph
+	p = push
+	pf = push --force
+[user]
+	email = <fill-here>
+	name = Jean-Baptiste Lorteau
+[core]
+	editor = vim
