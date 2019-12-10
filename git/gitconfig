@@ -5,9 +5,12 @@
 	br = branch
 	bs = bisect
 	sh = stash
-	rem-up = remote update -p
 	bD = branch -D
 	rup = remote update -p
+    rb = rebase
+    rbc = rebase --continue
+    rba = rebase --abort
+    ap = add -p
 	diffs = diff --staged
 	bm = branch -m
 	cob = checkout -b
@@ -26,3 +29,4 @@
 	name = Jean-Baptiste Lorteau
 [core]
 	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
