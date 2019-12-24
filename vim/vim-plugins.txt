@@ -1,0 +1,8 @@
+nerdtree
+nerdcommenter
+vim-airline
+vim-better-whitespace
+vim-clang-format
+vim-colors-solarized
+vim-markdown
+YouCompleteMe
