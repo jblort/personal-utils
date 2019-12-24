@@ -7,7 +7,7 @@ set directory=~/.vim/swaps//
 set rtp+=~/.fzf
 
 syntax enable
-let g:solarized_termtrans = 1
+let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
 " tabs Configuration
@@ -46,6 +46,7 @@ set hlsearch       " Highlight matches
 set incsearch      " Modern (wrapping) search
 set history=500    " Long undo history
 set tw=1000
+set scrolloff=1    " Ensure there are 1 line at least above / below the cursor when moving
 
 
 "Misc editor properties
@@ -75,7 +76,7 @@ set numberwidth=5                    " Line-number margin width
 set mousehide                        " Do not show mouse while typing
 set antialias                        " Pretty fonts
 set guicursor=a:blinkon1
-set guifont=Andale\ Mono\ 7.5          " Monospaced small font
+set guifont=Andale\ Mono\ 7.5        " Monospaced small font
 set guioptions-=T                    " TODO
 set guioptions+=c                    " TODO Console messages
 set linespace=0                      " Don't insert any extra pixel lines
@@ -112,10 +113,9 @@ set hlsearch
 " == Custom bindings ==
 let mapleader= "\<space>"
 map <space> <Leader>
+
 "Remap leader + space to stop highligthing of the last search
 nnoremap <Leader>h :nohlsearch<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
 
 "Remap arrows to be inoperant. Get used to hjkl
 noremap <Up> <nop>
@@ -190,3 +190,15 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " Bindings
 nnoremap <Leader>jj :YcmCompleter GoTo<CR>
 nnoremap <Leader>F :YcmCompleter FixIt<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Highlighter options"                                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:cpp_simple_highlight = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Clang-format"                                                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clang_format#detect_style_file=1
+let g:clang_format#auto_format=1
+let g:clang_format#enable_fallback_style=0
