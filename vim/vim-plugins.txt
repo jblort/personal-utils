@@ -6,3 +6,4 @@ vim-clang-format
 vim-colors-solarized
 vim-markdown
 YouCompleteMe
+git-blame.vim
