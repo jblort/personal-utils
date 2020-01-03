@@ -165,6 +165,11 @@ com! DiffSaved call s:DiffWithSaved()
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 	 	\ | diffthis | wincmd p | diffthis
 
+function! Jsonp()
+    %!python -m json.tool
+endfunction
+com! Jsonp call Jsonp()
+
 "Airline fix
 set laststatus=2
 
@@ -182,23 +187,31 @@ let g:racer_cmd = "/Users/jblort/.cargo/bin/racer"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe options                                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Vim asks only once per ycm configuration file
 let g:ycm_confirm_extra_conf = 0
+
 " Force close the preview window
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
 " Bindings
 nnoremap <Leader>jj :YcmCompleter GoTo<CR>
 nnoremap <Leader>F :YcmCompleter FixIt<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Highlighter options"                                                    "
+" Vim Highlighter options                                                     "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:cpp_simple_highlight = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Clang-format"                                                               "
+" Clang-format                                                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format#detect_style_file=1
-let g:clang_format#auto_format=1
+let g:clang_format#auto_format=0
 let g:clang_format#enable_fallback_style=0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git blame                                                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>b :<C-u>call gitblame#echo()<CR>
