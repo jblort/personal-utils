@@ -11,6 +11,10 @@ export VDPAU_DRIVER=va_gl
 # Path to your oh-my-zsh installation.
 export ZSH="/home/jblort/.oh-my-zsh"
 
+# Default base branch for review, used with git review aliases
+export REVIEW_BASE=develop
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -34,7 +38,6 @@ source $ZSH/oh-my-zsh.sh
 alias v=vim
 alias g=git
 alias cmbp="cmake --build --parallel"
-alias as="studio.sh &"
 
 # Launch ffprobe with warning cruft hidden with hide_banner
 alias ffprobe="ffprobe -hide_banner"
@@ -45,8 +48,12 @@ alias githome="git config user.email jb.lort@gmail.com"
 # A simple alias to find all the C++ source files in a repo using standard extenstions
 alias findcpp="find . -name \"*.h\" -o -name \"*.inl\" -o -name \"*.cpp\" -o -name \"*.hpp\""
 
+# Clang format helper
+alias cf="clang-format -style=file -i"
+
 # Format an entire C++ folder recursively with clang-format
-alias cf-repo="findcpp | xargs clang-format -style=file -i"
+alias cf-repo="findcpp | xargs cf"
+
 
 # Source FZF and Autojump
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
