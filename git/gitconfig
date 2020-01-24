@@ -11,6 +11,7 @@
     rbc = rebase --continue
     rba = rebase --abort
     ap = add -p
+    au = add -u
 	diffs = diff --staged
 	bm = branch -m
 	cob = checkout -b
@@ -22,10 +23,22 @@
 	stshp = stash show -p
 	stsh = stash show
 	dog = log --all --decorate --oneline --graph
-	p = push
+    p = push
 	pf = push --force
+
+    # Diff helpers for code review
+    files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+    stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
+
+    # Heatmap
+    hm = heatmap
+
+    # Review helpers
+    review = !vim -p $(git files) +\"tabdo Gvdiffsplit $REVIEW_BASE\" +\"tabdo GitGutterEnable\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+    reviewone = !vim -p +\"tabdo Gvdiffsplit $REVIEW_BASE\" +\"tabdo GitGutterEnable\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+
 [user]
-	email = <fill-here>
+	email = jean-baptiste.lorteau@easy.movie
 	name = Jean-Baptiste Lorteau
 [core]
 	editor = vim
