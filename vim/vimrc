@@ -10,18 +10,21 @@ syntax enable
 let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
+
 " tabs Configuration
 filetype plugin indent on
+
 " show existing tab with 4 spaces width
 set tabstop=4
+
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 set cino+=g0
+
 " On pressing tab, insert 4 spaces
 set expandtab
 set clipboard=unnamedplus
 
-autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufRead,BufNewFile *.gltf set filetype=json
 
 autocmd StdinReadPre * let s:std_in=1
@@ -46,7 +49,7 @@ set hlsearch       " Highlight matches
 set incsearch      " Modern (wrapping) search
 set history=500    " Long undo history
 set tw=1000
-set scrolloff=1    " Ensure there are 1 line at least above / below the cursor when moving
+set scrolloff=3    " Ensure there are 1 line at least above / below the cursor when moving
 
 
 "Misc editor properties
@@ -75,16 +78,14 @@ set number                           " Always show line-numbers
 set numberwidth=5                    " Line-number margin width
 set mousehide                        " Do not show mouse while typing
 set antialias                        " Pretty fonts
-set guicursor=a:blinkon1
-set guifont=Andale\ Mono\ 7.5        " Monospaced small font
-set guioptions-=T                    " TODO
-set guioptions+=c                    " TODO Console messages
 set linespace=0                      " Don't insert any extra pixel lines
 set lazyredraw                       " Don't redraw while running macros
 set wildmenu                         " Wild menu
 set wildmode=longest,list,full       " Wild menu options
 
-
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
 
 " Statusline
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
@@ -102,9 +103,6 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | | +-- readonly flag in square brackets
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
-
-"Higlighting
-set showmatch
 
 "Search options
 set incsearch
@@ -141,11 +139,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"navigation between buffers
-map <C-B>n :bn<CR>
-map <C-B>p :bp<CR>
-map <C-B>d :bd<CR>
-
 "Better split opening location defaults
 set splitbelow
 set splitright
@@ -175,9 +168,6 @@ set laststatus=2
 
 set shortmess=a
 
-" Enables buffer hiding
-set hidden
-
 " Disable markdown folding
 let g:vim_markdown_folding_disabled = 1
 
@@ -194,6 +184,9 @@ let g:ycm_confirm_extra_conf = 0
 " Force close the preview window
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Different symbols for warning and errors in the gutter
+let g:ycm_warning_symbol = '?'
 
 " Bindings
 nnoremap <Leader>jj :YcmCompleter GoTo<CR>
@@ -212,6 +205,11 @@ let g:clang_format#auto_format=0
 let g:clang_format#enable_fallback_style=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git blame                                                                   "
+" git blame                                                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>b :<C-u>call gitblame#echo()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" git gutter plugin                                                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_enabled = 0

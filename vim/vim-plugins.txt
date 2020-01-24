@@ -7,3 +7,5 @@ vim-colors-solarized
 vim-markdown
 YouCompleteMe
 git-blame.vim
+vim-fugitive
+vim-gitgutter
