@@ -9,3 +9,10 @@ YouCompleteMe
 git-blame.vim
 vim-fugitive
 vim-gitgutter
+g clone git@github.com:preservim/nerdtree.git
+g clone git@github.com:preservim/nerdcommenter.git
+g clone git@github.com:npeters/vim-better-whitespace.git
+g clone git@github.com:ntpeters/vim-better-whitespace.git
+g clone git@github.com:altercation/vim-colors-solarized
+g clone git@github.com:plasticboy/vim-markdown
+g clone git@github.com:ycm-core/YouCompleteMe
